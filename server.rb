@@ -1,7 +1,8 @@
 require "sinatra"
 require "sinatra/activerecord"
 
-ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: "./database.sqlite3")
+ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
+# ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: "./database.sqlite3")
 
 # set :database, {adapter: "sqlite3", database:"./database.sqlite3"}
 
