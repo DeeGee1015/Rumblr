@@ -1,0 +1,11 @@
+<h1>Rumblr</h1>
+
+<% if session[:user_id] %>
+<form action="/logout" method="post">
+  <input type="submit" value="Log Out">
+</form>
+<% else %>
+<a href="/login">Log In</a>
+<a href="/signup">Signup</a>
+<% end %>
+<%= session[:user_id] %>

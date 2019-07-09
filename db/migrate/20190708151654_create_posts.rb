@@ -1,0 +1,11 @@
+class CreatePosts < ActiveRecord::Migration[5.2]
+  def change
+    create_table :post do |t|
+      t.string :title
+      t.text :content
+      t.string :image_url
+      t.integer :user_id
+      t.datetime :create_at
+    end
+  end
+end
