@@ -1,11 +1,31 @@
-<h1>Rumblr</h1>
+<div class="topnav">
 
+
+<div class="welcome" >
 <% if session[:user_id] %>
 <form action="/logout" method="post">
-  <input type="submit" value="Log Out">
+<input type="submit" value="Log Out">
 </form>
 <% else %>
-<a href="/login">Log In</a>
-<a href="/signup">Signup</a>
+<a href="/user/login"><button1>Log In</button1></a>
+<a href="/user/signup"><button2>Sign Up</button2></a>
 <% end %>
 <%= session[:user_id] %>
+</div>
+</div>
+
+<div class="search">
+  <form class="example" action="/search">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+</div>
+
+<div class="bg-text">Rumblr</div>
+
+<div class="bg-image img1"></div>
+<!-- <div class="bg-image img2"></div>
+<div class="bg-image img3"></div>
+<div class="bg-image img4"></div>
+<div class="bg-image img5"></div>
+<div class="bg-image img6"></div> -->

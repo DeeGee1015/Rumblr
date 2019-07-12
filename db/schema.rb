@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_07_08_151654) do
 
-  create_table "post", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "image_url"

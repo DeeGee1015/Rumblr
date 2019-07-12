@@ -1,14 +1,17 @@
 require "sinatra"
 require "sinatra/activerecord"
 
-ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
-# ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: "./database.sqlite3")
+#ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
+ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: "./database.sqlite3")
 
 # set :database, {adapter: "sqlite3", database:"./database.sqlite3"}
 
 enable :sessions
 
 class User < ActiveRecord::Base
+end
+
+class Post < ActiveRecord::Base
 end
 
 get "/" do
@@ -36,16 +39,30 @@ end
 
 
 get "/thanks" do
-  erb :'user/thanks'
+  erb :'/user/thanks'
 end
 
-get "/login" do
-  erb :'user/login'
+get "/user/login" do
   if session[:user_id]
     redirect "/"
   else
-    erb :'user/login'
+    erb :'/user/login'
   end
+end
+post "/user/login" do
+  user = User.find_by(email: params[:email])
+  p user.password
+  p params[:password]
+  if user.password == params[:password]
+    session[:user_id] = user.id
+    redirect "/user/post"
+  else
+    redirect "/user/login"
+  end
+end
+
+get '/search' do
+  erb :'search'
 end
 
 post "/login" do
@@ -59,8 +76,24 @@ post "/login" do
       p "Invalid email or pasword"
     end
   end
+
+end
+get '/user/post' do
+  @post = Post.all
+  erb :'/user/post'
 end
 
+post '/user/post' do
+  p params
+  params.merge!(user_id: session[:user_id])
+  @post = Post.new(params)
+  @post.save
+  redirect '/user/feeds'
+end
+get "/user/feeds" do
+  @post = Post.all
+  erb :'/user/feeds'
+end
 #Delete request
 post '/logout'do
   session.clear
