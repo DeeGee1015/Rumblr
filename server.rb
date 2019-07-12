@@ -32,7 +32,7 @@ get "/user/signup" do
   end
 end
 
-post "user/signup" do
+post "/signup" do
 @user = User.new(params)
 if @user.save
   p "#{@user.first_name} was saved to the database"
@@ -52,7 +52,7 @@ get "/user/login" do
     erb :'/user/login'
   end
 end
-post "/user/login" do
+post "/login" do
   user = User.find_by(email: params[:email])
   p user.password
   p params[:password]
