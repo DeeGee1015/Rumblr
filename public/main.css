@@ -65,7 +65,10 @@ body{
   font-size: 25px;
 }
 
-
+.ty{
+  text-align: center;
+background-image: url("https://i.giphy.com/media/l3q2FnW3yZRJVZH2g/giphy.webp");
+}
 
 /*Broken Search *
 {
