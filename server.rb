@@ -22,7 +22,7 @@ get "/" do
   # puts "running"
 end
 
-get "/signup" do
+get "/user/signup" do
   @user = User.new
   erb :'user/signup'
   if session[:user_id]
@@ -32,7 +32,7 @@ get "/signup" do
   end
 end
 
-post "/signup" do
+post "user/signup" do
 @user = User.new(params)
 if @user.save
   p "#{@user.first_name} was saved to the database"
