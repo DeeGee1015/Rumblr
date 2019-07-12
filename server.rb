@@ -7,6 +7,7 @@ else
   set :database, {adapter: "sqlite3", database: "database.sqlite3"}
 end
 
+
 enable :sessions
 
 class User < ActiveRecord::Base
